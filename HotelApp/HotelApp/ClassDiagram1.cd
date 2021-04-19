@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HotelApp.Client">
+    <Position X="1.75" Y="6" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Client.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.Service">
+    <Position X="4" Y="5.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.Room">
+    <Position X="1.75" Y="2.25" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAABABAAAAgBAAAAAAAAAAAAAAAAEIABAAAACA=</HashCode>
+      <FileName>Room.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.HotelDB">
+    <Position X="4.25" Y="1.75" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAARAJAAAAgAAAAIAAABAAAAIAAAAA=</HashCode>
+      <FileName>HotelDB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.Form1">
+    <Position X="6.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAACBQRBAAAACAACACAAAIAQAAICACABCAAAA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.AddForm">
+    <Position X="8.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAACBAAAAAAACAAAACAAAIAAAAEEAACAABAAA=</HashCode>
+      <FileName>AddForm.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="HotelDB" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="HotelApp.AddServices">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACIAABAABACAAAACAAAYAAAAEGAAAAEAAAA=</HashCode>
+      <FileName>AddServices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.Booking">
+    <Position X="6.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAQCAAABAAAACAAAACAAAAAAAAEAgAAAAAAAA=</HashCode>
+      <FileName>Booking.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.RemoveForm">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABAAAACAAAACAAAIAAAAEEAAAAAAAAA=</HashCode>
+      <FileName>RemoveForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HotelApp.Score">
+    <Position X="10.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAEABACAAABBgBACIBAACAAAIAAAAEGIAAAAAACI=</HashCode>
+      <FileName>Score.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
