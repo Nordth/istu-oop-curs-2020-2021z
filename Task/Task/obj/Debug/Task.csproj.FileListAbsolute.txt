@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\Task\Task\bin\Debug\Task.exe
+C:\Users\user\Desktop\Task\Task\bin\Debug\Task.pdb
+C:\Users\user\Desktop\Task\Task\obj\Debug\Task.csprojAssemblyReference.cache
+C:\Users\user\Desktop\Task\Task\obj\Debug\Task.Form1.resources
+C:\Users\user\Desktop\Task\Task\obj\Debug\Task.Properties.Resources.resources
+C:\Users\user\Desktop\Task\Task\obj\Debug\Task.csproj.GenerateResource.cache
+C:\Users\user\Desktop\Task\Task\obj\Debug\Task.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Task\Task\obj\Debug\Task.exe
+C:\Users\user\Desktop\Task\Task\obj\Debug\Task.pdb
