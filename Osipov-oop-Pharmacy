@@ -1,0 +1,311 @@
+# Программа учета аптечного склада
+import random
+import tkinter as tk
+from tkinter.ttk import Combobox
+import tkinter.messagebox as mb
+
+
+group = ['Вегетотропные средства.',
+         'Гематотропные средства.',
+         'Гомеопатические средства.',
+         'Гормоны и их антагонисты.',
+         'Иммунотропные средства.',
+         'Интермедианты.',
+         'Метаболики.',
+         'Нейротропные средства.',
+         'Ненаркотические анальгетики, включая нестероидные противовоспалительные средства.',
+         'Органотропные.',
+         'Противомикробные, противопаразитарные и противоглистные средства, инсектициды, включая репелленты.',
+         'Противоопухолевые средства.',
+         'Регенеранты и репаранты.',
+         'Разные средства.']
+
+manufacturer = ['Новартис Фарма АГ',
+                'Рош-Москва',
+                'Байер',
+                'АстраЗенека',
+                'Пфайзер Эйч.Си.Пи']
+
+provider = ['Фирма А',
+            'Фирма Б',
+            'Фирма В']
+
+drugs = ['Аспирин',
+         'Валидол',
+         'Пурген']
+
+flag = 0
+admissions = []
+cheks = []
+
+
+class Admission:
+    def __init__(self, goods_, count_, price_, man_, prov_):
+        self.goods = goods_
+        self.count = count_
+        self.price = price_
+        self.man = man_
+        self.prov = prov_
+
+    def print_adm(self):
+        return self.goods, self.count, self.price, self.man, self.prov
+
+
+class Chek:
+    def __init__(self, goods, count, price):
+        self.goods = goods
+        self.count = count
+        self.price = price
+
+
+class Drugs:
+    def __init__(self, name, count, group):
+        self.name = name
+        self.group = group
+        self.count = count
+
+    def print_count(self):
+        return self.count
+
+    def count_change(self, count):
+        self.count += count
+
+
+drugs_dictionary = [] # заполняем справочник лекарств обьектами
+for i in drugs:
+    drugs_dictionary.append(Drugs(i, 0, random.choice(group)))
+
+
+def groups():
+    btn5.grid(column=0, row=0)
+    btn6.grid(column=1, row=0)
+    btn7.grid(column=2, row=0)
+    btn8.grid(column=3, row=0)
+    lbox.grid(column=4, row=1)
+    btn9.grid(column=4, row=2)
+    btn10.grid(column=3, row=3)
+    btn_main_menu.grid(column=0, row=3)
+    add_field.grid(column=2, row=3)
+
+
+def show_groups():
+    global flag
+    flag = 1
+    lbox.delete(0, tk.END)
+    for item in group:
+        lbox.insert(0, item)
+
+
+def show_manufacturers():
+    global flag
+    flag = 2
+    lbox.delete(0, tk.END)
+    for item in manufacturer:
+        lbox.insert(0, item)
+
+
+def show_providers():
+    global flag
+    flag = 3
+    lbox.delete(0, tk.END)
+    for item in provider:
+        lbox.insert(0, item)
+
+
+def show_drugs():
+    global flag
+    flag = 4
+    lbox.delete(0, tk.END)
+    for item in drugs_dictionary:
+        lbox.insert(0, item.name)
+
+
+def admission():
+    widgets = [btn1, btn2, btn3, btn4]
+    for i in widgets:
+        i.grid_remove()
+    drug.grid(column=0, row=0)
+    count.grid(column=1, row=0)
+    price.grid(column=2, row=0)
+    man.grid(column=3, row=0)
+    prov.grid(column=4, row=0)
+    combo_drug.grid(column=0, row=1)
+    count_field.grid(column=1, row=1)
+    price_field.grid(column=2, row=1)
+    combo_man.grid(column=3, row=1)
+    combo_prov.grid(column=4, row=1)
+    btn_main_menu.grid(column=0, row=4)
+    btn_admission.grid(column=0, row=3)
+
+
+def add_admission():
+    # добавление накладной
+    goods = combo_drug.get()
+    count = count_field.get()
+    price = price_field.get()
+    man = combo_man.get()
+    prov = combo_prov.get()
+    admissions.append(Admission(goods, count, price, man, prov))
+    for d in drugs_dictionary:
+        if d.name == goods:
+            d.count_change(int(count))
+
+
+def sale():
+    widgets = [btn1, btn2, btn3, btn4]
+    for i in widgets:
+        i.grid_remove()
+    drug.grid(column=0, row=0)
+    count.grid(column=1, row=0)
+    price.grid(column=2, row=0)
+    combo_drug.grid(column=0, row=1)
+    count_field.grid(column=1, row=1)
+    price_field.grid(column=2, row=1)
+    btn_main_menu.grid(column=0, row=4)
+    btn_sale.grid(column=0, row=3)
+
+
+def add_sale():
+    goods = combo_drug.get()
+    count = count_field.get()
+    price = price_field.get()
+    cheks.append(Chek(goods, count, price))
+    for d in drugs_dictionary:
+        if goods == d.name:
+            d.count_change(int(count))
+
+
+def reports():
+    widgets = [btn1, btn2, btn3, btn4]
+    for i in widgets:
+        i.grid_remove()
+    combo.grid(column=0, row=0)
+    btn9.grid(column=2, row=0)
+    lbox_grug.grid(column=3, row=0)
+    lbox_count.grid(column=4, row=0)
+    btn_main_menu.grid(column=0, row=4)
+
+
+def print_report():
+    lbox_grug.delete(0, tk.END)
+    lbox_count.delete(0, tk.END)
+    if combo.get() == 'Отчет по наличию лекарств на складе по группам':
+        for i in drugs_dictionary:
+            lbox_grug.insert(0, i.name)
+            lbox_count.insert(0, i.count)
+    elif combo.get() == 'Отчет по продажам по группам':
+        for i in drugs_dictionary:
+            sum = 0
+            for j in cheks:
+                if i.name == j.goods:
+                    sum = sum + int(j.count)
+            lbox_grug.insert(0, i.name)
+            lbox_count.insert(0, sum)
+    elif combo.get() == 'Счет-фактура':
+        invoice.delete('1.0', tk.END)
+        invoice.grid(column=5, row=0)
+        text = 'Invoice № ___\n' + 'Продавец: ООО "Рога и копыта"\n'\
+               + 'Купленные лекарственные средства:\n' \
+                 '' + str(admissions[0].print_adm())
+        print(text)
+        invoice.insert(tk.END, text)
+
+
+def add_group_element():
+    new_element = add_field.get()
+    if flag == 1 and add_field.get() != '':
+        group.append(new_element)
+        lbox.insert(tk.END, new_element)
+    elif flag == 2 and add_field.get() != '':
+        manufacturer.append(new_element)
+        lbox.insert(tk.END, new_element)
+    elif flag == 3 and add_field.get() != '':
+        provider.append(new_element)
+        lbox.insert(tk.END, new_element)
+    elif flag == 4 and add_field.get() != '':
+        drugs.append(new_element)
+        lbox.insert(tk.END, new_element)
+    else:
+        mb.showwarning('Предупреждение', 'Не выбран справочник или поле пустое!')
+
+
+def delete_group_element():
+    item_to_delete = lbox.get(lbox.curselection())
+    index = lbox.curselection()
+    if flag == 1 and item_to_delete != '':
+        group.remove(item_to_delete)
+        lbox.delete(index)
+    elif flag == 2 and item_to_delete != '':
+        manufacturer.remove(item_to_delete)
+        lbox.delete(index)
+    elif flag == 3 and item_to_delete != '':
+        provider.remove(item_to_delete)
+        lbox.delete(index)
+    elif flag == 4 and item_to_delete != '':
+        drugs.remove(item_to_delete)
+        lbox.delete(index)
+    else:
+        mb.showwarning('Предупреждение', 'Не выбран элемент справочника или справочник')
+
+
+def main_window():
+    widgets = [btn_main_menu, lbox, btn5, btn6, btn7, btn8, btn9, btn10, add_field, drug, count,
+               combo_drug, count_field, man, prov, combo_man, combo_prov, price, price_field, btn_admission,
+               btn_sale, combo, btn9, lbox_grug, lbox_count, invoice]
+    for i in widgets:
+        i.grid_remove()
+    btn1.grid(column=0, row=0)
+    btn2.grid(column=1, row=0)
+    btn3.grid(column=2, row=0)
+    btn4.grid(column=3, row=0)
+    combo_man['values'] = manufacturer  # перечитаем справочники
+    combo_drug['values'] = drugs
+    combo_prov['values'] = provider
+
+
+window = tk.Tk()
+window.title('Farmacy')
+window.geometry('800x600')
+btn1 = tk.Button(text='Справочники', command=groups)
+btn1.grid(column=0, row=0)
+btn2 = tk.Button(text='Приход', command=admission)
+btn2.grid(column=1, row=0)
+btn3 = tk.Button(text='Продажа', command=sale)
+btn3.grid(column=2, row=0)
+btn4 = tk.Button(text='Отчеты', command=reports)
+btn4.grid(column=3, row=0)
+btn5 = tk.Button(text='Группы лекарств', command=show_groups)
+btn6 = tk.Button(text='Производители', command=show_manufacturers)
+btn7 = tk.Button(text='Поставщики', command=show_providers)
+btn8 = tk.Button(text='Лекарства', command=show_drugs)
+btn9 = tk.Button(text='Удалить элемент', command=delete_group_element)
+btn10 = tk.Button(text='Добавить элемент', command=add_group_element)
+lbox = tk.Listbox(width=40, height=20)
+btn_main_menu = tk.Button(text='На главную', command=main_window)
+add_field = tk.Entry(width=10)
+drug = tk.Label(text='Лекарство')
+count = tk.Label(text='Количество')
+price = tk.Label(text='Цена')
+man = tk.Label(text='Производитель')
+prov = tk.Label(text='Поставщик')
+combo_drug = Combobox()
+combo_drug['values'] = drugs
+combo_drug.current(0)  # установка варианта по умолчанию
+count_field = tk.Entry(width=10)
+price_field = tk.Entry(width=10)
+combo_man = Combobox()
+combo_man['values'] = manufacturer
+combo_man.current(0)
+combo_prov = Combobox()
+combo_prov['values'] = provider
+combo_prov.current(0)
+btn_admission = tk.Button(text='Провести поступление', command=add_admission)
+btn_sale = tk.Button(text='Продать', command=add_sale)
+combo = Combobox()
+combo['values'] = ('Отчет по наличию лекарств на складе по группам', 'Отчет по продажам по группам', 'Счет-фактура')
+combo.current(0)  # установка варианта по умолчанию
+btn9 = tk.Button(text='Вывести отчет', command=print_report)
+lbox_grug = tk.Listbox(width=20, height=20)
+lbox_count = tk.Listbox(width=10, height=20)
+invoice = tk.Text(width=30, height=20)
+window.mainloop()
